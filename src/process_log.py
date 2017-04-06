@@ -178,5 +178,3 @@ with open(out_hours, 'w') as f:
             f.write(str(l) + ',' +str(i) + '\n')
 	
 print("--- Execution time %s seconds ---" % (time.time() - start_time))
-
-print("--- Execution time %s seconds ---" % (time.time() - start_time))
