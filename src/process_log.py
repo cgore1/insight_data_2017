@@ -12,16 +12,16 @@ heap_bandwidth = []
 heap_timestamp = []
 tim_list = []
 
-if len(sys.argv) < 7:
+if len(sys.argv) < 6:
     print 'Error: Insufficient number of arguements.'
     exit()
 
-process_log = sys.argv[1]
-input_log = sys.argv[2]
-out_hosts = sys.argv[3]
-out_hours = sys.argv[4]
-out_res = sys.argv[5]
-out_blocked = sys.argv[6]
+process_log = sys.argv[0]
+input_log = sys.argv[1]
+out_hosts = sys.argv[2]
+out_hours = sys.argv[3]
+out_res = sys.argv[4]
+out_blocked = sys.argv[5]
 
 def updateheap(freq_dict, entity, heap):
     index = -1
