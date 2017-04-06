@@ -167,5 +167,4 @@ with open(out_hours, 'w') as f:
         f.write(i + '\n')
         # print i
 
-with open(process_log, 'w') as o:
-    print("--- Execution time %s seconds ---" % (time.time() - start_time))
+print("--- Execution time %s seconds ---" % (time.time() - start_time))
