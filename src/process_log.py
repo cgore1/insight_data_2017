@@ -11,8 +11,6 @@ heap_bandwidth = []
 heap_timestamp = []
 tim_list = []
 
-class last_failed:
-    s = 0
 
 def updateheap(freq_dict, entity, heap):
     index = -1
@@ -39,11 +37,11 @@ w = window()
 fail_counts = {}
 blocked = {}
 
-blockedfile = open('../log_output/blocked.txt', 'w')
+blockedfile = open('log_output/blocked.txt', 'w')
 hourdelta = timedelta(minutes=59)
 timestamp_format = "%d/%b/%Y:%H:%M:%S -0400"
 timestamp = None
-with open('../log_input/log.txt', 'r') as f:
+with open('log_input/log.txt', 'r') as f:
     for line in f:
         split = line.split(' ')
         hostname = split[0]
@@ -132,7 +130,7 @@ for i in range(len(heap_ips)):
     s = e[1] + ',' +str(e[0])
     l = [s] + l
 
-with open('../log_output/hosts.txt', 'w') as f:
+with open('log_output/hosts.txt', 'w') as f:
     for i in l:
         f.write(i + '\n')
 
@@ -142,7 +140,7 @@ for i in range(len(heap_bandwidth)):
     s = e[1]
     l = [s] + l
 
-with open('../log_output/resources.txt', 'w') as f:
+with open('log_output/resources.txt', 'w') as f:
     for i in l:
         f.write(i + '\n')
         # print i
@@ -154,7 +152,7 @@ for i in range(len(heap_timestamp)):
     l = [s] + l
 
 
-with open('../log_output/hours.txt', 'w') as f:
+with open('log_output/hours.txt', 'w') as f:
     for i in l:
         f.write(i + '\n')
         # print i
