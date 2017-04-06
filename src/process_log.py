@@ -34,7 +34,17 @@ def updateheap(freq_dict, entity, heap):
         heapify(heap)
     else:
         if len(heap) == 10:
-            heappushpop(heap, (freq_dict[entity], entity))
+            ele = heappop(heap)
+            if ele[0] > freq_dict[entity]:
+                heappush(heap, ele)
+            elif ele[0] < freq_dict[entity]:
+                heappush(heap, (freq_dict[entity], entity))
+            else:
+                if str(ele[1]) < str(entity):
+                    heappush(heap, ele)
+                else:
+                    heappush(heap, (freq_dict[entity], entity))
+            # heappushpop(heap, (freq_dict[entity], entity))
         else:
             heappush(heap, (freq_dict[entity], entity))
 
