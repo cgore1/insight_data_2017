@@ -165,16 +165,18 @@ with open(out_res, 'w') as f:
         f.write(i + '\n')
         # print i
 
-l = []
+d = {}
 for i in range(len(heap_timestamp)):
     e = heappop(heap_timestamp)
-    s = str(e[1].strftime(timestamp_format)) + ',' +str(e[0])
-    l = [s] + l
-
+    if e[0] not in d:
+        d[e[0]] = []
+    d[e[0]].append(str(e[1].strftime(timestamp_format)))
 
 with open(out_hours, 'w') as f:
-    for i in l:
-        f.write(i + '\n')
-        # print i
+    for i in sorted(d, reverse=True):
+        for l in d[i]:	
+            f.write(str(l) + ',' +str(i) + '\n')
+	
+print("--- Execution time %s seconds ---" % (time.time() - start_time))
 
 print("--- Execution time %s seconds ---" % (time.time() - start_time))
