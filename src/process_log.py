@@ -1,6 +1,7 @@
 from heapq import heappush, heappop, heapify, heappushpop
 from datetime import datetime,timedelta, time
 import time
+import sys
 start_time = time.time()
 
 ips = {}
@@ -11,6 +12,16 @@ heap_bandwidth = []
 heap_timestamp = []
 tim_list = []
 
+if len(sys.argv) < 7:
+    print 'Error: Insufficient number of arguements.'
+    exit()
+
+process_log = sys.argv[1]
+input_log = sys.argv[2]
+out_hosts = sys.argv[3]
+out_hours = sys.argv[4]
+out_res = sys.argv[5]
+out_blocked = sys.argv[6]
 
 def updateheap(freq_dict, entity, heap):
     index = -1
@@ -37,11 +48,11 @@ w = window()
 fail_counts = {}
 blocked = {}
 
-blockedfile = open('log_output/blocked.txt', 'w')
+blockedfile = open(out_blocked, 'w')
 hourdelta = timedelta(minutes=59)
 timestamp_format = "%d/%b/%Y:%H:%M:%S -0400"
 timestamp = None
-with open('log_input/log.txt', 'r') as f:
+with open(input_log, 'r') as f:
     for line in f:
         split = line.split(' ')
         hostname = split[0]
@@ -130,7 +141,7 @@ for i in range(len(heap_ips)):
     s = e[1] + ',' +str(e[0])
     l = [s] + l
 
-with open('log_output/hosts.txt', 'w') as f:
+with open(out_hosts, 'w') as f:
     for i in l:
         f.write(i + '\n')
 
@@ -140,7 +151,7 @@ for i in range(len(heap_bandwidth)):
     s = e[1]
     l = [s] + l
 
-with open('log_output/resources.txt', 'w') as f:
+with open(out_res, 'w') as f:
     for i in l:
         f.write(i + '\n')
         # print i
@@ -152,9 +163,11 @@ for i in range(len(heap_timestamp)):
     l = [s] + l
 
 
-with open('log_output/hours.txt', 'w') as f:
+with open(out_hours, 'w') as f:
     for i in l:
         f.write(i + '\n')
         # print i
 
-print("--- Execution time %s seconds ---" % (time.time() - start_time))
+with open(process_log, 'w') as o:
+    o.write("--- Execution time %s seconds ---" % (time.time() - start_time))
+    print("--- Execution time %s seconds ---" % (time.time() - start_time))
