@@ -16,7 +16,6 @@ if len(sys.argv) < 6:
     print 'Error: Insufficient number of arguements.'
     exit()
 
-process_log = sys.argv[0]
 input_log = sys.argv[1]
 out_hosts = sys.argv[2]
 out_hours = sys.argv[3]
@@ -169,5 +168,4 @@ with open(out_hours, 'w') as f:
         # print i
 
 with open(process_log, 'w') as o:
-    o.write("--- Execution time %s seconds ---" % (time.time() - start_time))
     print("--- Execution time %s seconds ---" % (time.time() - start_time))
